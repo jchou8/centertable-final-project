@@ -43,7 +43,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     
   tabPanel("Energy Production By Type",
     titlePanel('Energy Production By Type'),
-    p("This is placeholder text alsdkfjksd"),
+    p("This chart displays energy production for each year, separated into four major categories: coal, crude oil, natural gas, and renewable. The data can be filtered down to a specific state and range of years."),
            
     sidebarLayout(
       sidebarPanel(
