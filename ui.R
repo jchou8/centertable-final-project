@@ -1,11 +1,13 @@
-
+# Include libraries
 library(shiny)
 library(dplyr)
+library(plotly)
 
+# Get list of state names for use in widgets
 states <- read.csv("./data/state_codes.csv", stringsAsFactors = FALSE)
 state.names <- states$StateName[1:51]
 
-# Define UI for application that draws a histogram
+# Set up UI
 shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
                    
   # Overview tab with information on the project
