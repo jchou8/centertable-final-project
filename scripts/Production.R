@@ -7,7 +7,7 @@ library(tidyr)
 # energy.prod <- read.csv("../data/clean/prod_clean.csv", stringsAsFactors = FALSE)
 
 
-ProductionPlot <- function(data,  state = 'USA', startYear = 1960, endYear = 2014) {
+ProductionPlot <- function(data,  state = 'Overall', startYear = 1960, endYear = 2014) {
   # Reshape and clean the data
   energy.prod.clean <- data %>% gather(year, production, X1960:X2014, convert = TRUE) %>% 
     mutate(year = as.numeric(gsub("X", "", year))) %>% 
