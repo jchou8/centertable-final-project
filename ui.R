@@ -43,7 +43,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     )
   ),
     
-  tabPanel("Energy Production By Type",
+  tabPanel("Production",
     titlePanel('Energy Production By Type'),
     p("This chart displays energy production for each year, separated into four major categories: coal, crude oil, natural gas, and renewable. The data can be filtered down to a specific state and range of years."),
            
@@ -63,7 +63,13 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     )
   ),
     
-  tabPanel("State Energy Consumption By Distinct Enery Type",
+  tabPanel("Consumption",
+    titlePanel('Energy Consumption By Energy Type'),
+    h3("Pie Chart Overview"),
+    p("The following pie chart is intended to give an idea of which energy types a given state is 
+                      consuming the most/least of. All units are in billions of BTUs. The chart can be filtered by 
+                      year to see how a state has changed which energy it is consuming over time. 
+                      Observe how certain energy types have emerged and diminished between various states."),
     sidebarLayout(
       sidebarPanel(
         selectInput(inputId = 'distinct.state',
@@ -76,20 +82,15 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
                     label = 'Years',
                     min = 1960,
                     max = 2014,
-                    value = 1960,
+                    value = 2014,
                     sep = ''
         )
       ),
       
       mainPanel(
         tabsetPanel(
-        tabPanel('Chart', plotlyOutput("distinct.energy.type")),
-        tabPanel('Overview', 
-                    h3("Pie Chart Overview"),
-                    p("The following pie chart is intended to give an idea of which energy types a given state is 
-                      consuming the most/least of. All units are in BTUs. The chart can being filtered by 
-                      year to see how a state has changed which energy it is consuming over time. 
-                      Observe how certain energy types have emerged and diminished between vairous states."))
+          tabPanel('Chart', plotlyOutput("distinct.energy.type")),
+          tabPanel('Table', 'placeholder')
         )
       )
      )
