@@ -22,7 +22,7 @@ ProductionPlot <- function(data,  state = 'USA', startYear = 1960, endYear = 201
     group_by(year, Description, StateName) %>% 
     summarize(production = sum(as.numeric(production)))
     
-    if (state == "USA") {
+    if (state == "Overall") {
       energy.prod.filtered <- energy.prod.clean %>% group_by(year, Description) %>% summarize(production = sum(production))
     } else {
       energy.prod.filtered <- energy.prod.clean %>% filter(StateName == state) %>% select(-StateName)
