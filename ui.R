@@ -73,13 +73,13 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     sidebarLayout(
       sidebarPanel(
         selectInput(inputId = 'distinct.state',
-                      label = "State:",
-                      choices = c(state.name),
-                      selected = "Alabama"
+                      label = "State",
+                      choices = c("Overall", state.names),
+                      selected = "Overall"
                       
           ),
         sliderInput(inputId = 'distinct.year',
-                    label = 'Years',
+                    label = 'Year',
                     min = 1960,
                     max = 2014,
                     value = 2014,

@@ -7,18 +7,27 @@ use.data <- read.csv('data/clean/use_clean.csv', stringsAsFactors = FALSE)
 
 #Create function that takes in a data set, state and year and returns 
 #a pie chart with info regaurding energy consumption in given state and year
-BuildPieChart <- function(data, state = 'Alabama', year = 1960){
+BuildPieChart <- function(data, state = 'Overall', year = 2014){
   #put an x on the year
   year <- toString(year)
   year <- paste0('X',year)
+  
+  data <- select_(data, year, ~Description, ~StateName) %>% mutate_(use = year)
+  
   #Filter data to select given state and year, exclude and  
   #'Total energy consumption observation'
-  state.data <- filter(data, StateName == state) %>% select_(year,~Description) %>% filter(!grepl('excluding', Description)) %>% 
-    filter(Description != 'Total energy consumption.')%>% mutate_(year_dif = year)
+  if (state == "Overall") {
+    state.data <- group_by(data, Description) %>% summarize(use = sum(use))
+  } else {
+    state.data <- filter(data, StateName == state)
+  }
+  
+  state.data <- select(state.data, use, Description) %>% filter(!grepl('excluding', Description)) %>% 
+    filter(Description != 'Total energy consumption.')%>% mutate(year_dif = use)
   
   #filter data so that pie chart only shows energy types that make up
   #1.5 percent or higher of total state energy consumption
-  percent.of.total.btu <- sum(state.data[,year], na.rm = TRUE)*.01
+  percent.of.total.btu <- sum(state.data[,'use'], na.rm = TRUE)*.01
   state.data <- filter(state.data, year_dif > percent.of.total.btu)
   
  
