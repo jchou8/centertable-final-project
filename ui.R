@@ -63,10 +63,28 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     )
   ),
     
-  tabPanel("Expenditures",
+  tabPanel("State Energy Consumption By Distinct Enery Type",
     sidebarLayout(
-      sidebarPanel(),
-      mainPanel()
+      sidebarPanel(
+        selectInput(inputId = 'distinct.state',
+                      label = "State:",
+                      choices = c(state.name),
+                      selected = "Alabama"
+                      
+          ),
+        sliderInput(inputId = 'distinct.year',
+                    label = 'Years',
+                    min = 1960,
+                    max = 2014,
+                    value = 1960,
+                    sep = ''
+        )
+      ),
+               
+      mainPanel(
+        plotlyOutput("distinct.energy.type")
+      )
+     )
     )
   )
-))
+)
