@@ -80,9 +80,17 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
                     sep = ''
         )
       ),
-               
+      
       mainPanel(
-        plotlyOutput("distinct.energy.type")
+        tabsetPanel(
+        tabPanel('Chart', plotlyOutput("distinct.energy.type")),
+        tabPanel('Overview', 
+                    h3("Pie Chart Overview"),
+                    p("The following pie chart is intended to give an idea of which energy types a given state is 
+                      consuming the most/least of. All units are in BTUs. The chart can being filtered by 
+                      year to see how a state has changed which energy it is consuming over time. 
+                      Observe how certain energy types have emerged and diminished between vairous states."))
+        )
       )
      )
     )

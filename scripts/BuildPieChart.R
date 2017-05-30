@@ -29,7 +29,7 @@ BuildPieChart <- function(data, state = 'Alabama', year = 1960){
           textinfo = 'label+percent',
           showlegend =FALSE
   ) %>% 
-    layout(title= paste0(state, ' Energy Usage by Energy Type in '),
+    layout(title= paste0(state, ' Energy Consumption by Energy Type in ', substr(year, 2, 5)),
            xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
            autosize = FALSE, width = 800, height = 800
