@@ -7,21 +7,26 @@ state.names <- states$StateName[1:51]
 
 # Define UI for application that draws a histogram
 shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
-  #add overview
-  
+                   
+  # Overview tab with information on the project
   tabPanel("Overview",
     titlePanel('Project Overview'),
-    p("This is placeholder text until I figure out how to do things")
+    h3("The Report"),
+    p("it's a report"),
+    h3("Data"),
+    p("The dataset we are working with contains data on energy consumption, production, and expenditures from 1960 to 2014. This data was collected by the US Energy Information
+      Administration, a part of the US Department of Energy, and is publicly available here: "),
+    a("State Energy Data System", href = "https://www.eia.gov/state/seds/seds-data-complete.php?sid=US#CompleteDataFile")
   ),
     
-  tabPanel("State Energy Consumption",
+  tabPanel("Energy by State",
     sidebarLayout(
       sidebarPanel(
         selectInput("state",
           label = "Choose a state: ",
-           choices = c("Alabama (AL)", "Arkansas (AR)"))
-        ),
-               
+           choices = state.names
+        )
+      ),     
       mainPanel()
     )
   ),
@@ -30,22 +35,22 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     titlePanel('Energy Production By Type'),
     p("This is placeholder text alsdkfjksd"),
            
-      sidebarLayout(
-        sidebarPanel(
-          selectInput('prod.state', label = 'State', choices = c("Overall", state.names), selected = "Overall"),
-          sliderInput('prod.year.range', label = 'Years', min = 1960, max = 2014, value = c(1960, 2014), sep = "")
-        ),
-       
-        mainPanel(
-          plotlyOutput('production.over.time')
-        )
-     )
+    sidebarLayout(
+      sidebarPanel(
+        selectInput('prod.state', label = 'State', choices = c("Overall", state.names), selected = "Overall"),
+        sliderInput('prod.year.range', label = 'Years', min = 1960, max = 2014, value = c(1960, 2014), sep = "")
+      ),
+     
+      mainPanel(
+        plotlyOutput('production.over.time')
+      )
+    )
   ),
     
   tabPanel("Expenditures",
     sidebarLayout(
       sidebarPanel(),
-               
-      mainPanel()))
+      mainPanel()
+    )
   )
-)
+))
