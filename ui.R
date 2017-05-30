@@ -6,7 +6,7 @@ states <- read.csv("./data/state_codes.csv", stringsAsFactors = FALSE)
 state.names <- states$StateName[1:51]
 
 # Define UI for application that draws a histogram
-shinyUI(fluidPage(
+shinyUI(fluidPage(theme = "bootstrap.css",
   
   titlePanel("EIA State Energy Data"),
   
