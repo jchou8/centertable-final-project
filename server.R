@@ -3,13 +3,14 @@ library(shiny)
 
 source('./scripts/Production.R')
 source('./scripts/BuildPieChart.R')
+source('./scripts/BuildMap.R')
 
 energy.prod <- read.csv("./data/clean/prod_clean.csv", stringsAsFactors = FALSE)
 energy.use <- read.csv("./data/clean/use_clean.csv", stringsAsFactors = FALSE)
 
-Consumption <- read.csv('data/use_all_btu.csv', stringsAsFactors = FALSE)
-Expenditure <- read.csv('data/ex_all.csv', stringsAsFactors = FALSE)
-Production <- read.csv('data/prod_all.csv', stringsAsFactors = FALSE)
+Consumption <- read.csv('./data/use_all_btu.csv', stringsAsFactors = FALSE)
+Expenditure <- read.csv('./data/ex_all.csv', stringsAsFactors = FALSE)
+Production <- read.csv('./data/prod_all.csv', stringsAsFactors = FALSE)
 
 shinyServer(function(input, output) {
   
@@ -20,5 +21,5 @@ shinyServer(function(input, output) {
   output$distinct.energy.type <- renderPlotly(BuildPieChart(energy.use, input$distinct.state, input$distinct.year))
   
   #map
-  output$map <- renderPlotly(BuildMap(eval(parse(text = input$dataset)), input$select.year))
+  output$map <- renderPlotly(Build.Map(eval(parse(text = input$dataset)), input$select.year))
 })

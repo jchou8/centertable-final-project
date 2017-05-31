@@ -30,7 +30,7 @@ map.data <- function(data, year) {
 
 
 #function to build map
-BuildMap <- function(data, first.year = 1960) {
+Build.Map <- function(data, first.year = 1970) {
   mapping.data <- map.data(data, first.year)
   cumulative <- sum(mapping.data$total)
   #map geo
