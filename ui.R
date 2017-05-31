@@ -43,7 +43,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     )
   ),
     
-  tabPanel("Energy Production By Type",
+  tabPanel("Production",
     titlePanel('Energy Production By Type'),
     p("This chart displays energy production for each year, separated into four major categories: coal, crude oil, natural gas, and renewable. The data can be filtered down to a specific state and range of years."),
            
@@ -63,26 +63,35 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     )
   ),
     
-  tabPanel("State Energy Consumption By Distinct Enery Type",
+  tabPanel("Consumption",
+    titlePanel('Energy Consumption By Energy Type'),
+    h3("Pie Chart Overview"),
+    p("The following pie chart is intended to give an idea of which energy types a given state is 
+                      consuming the most/least of. All units are in billions of BTUs. The chart can be filtered by 
+                      year to see how a state has changed which energy it is consuming over time. 
+                      Observe how certain energy types have emerged and diminished between various states."),
     sidebarLayout(
       sidebarPanel(
         selectInput(inputId = 'distinct.state',
-                      label = "State:",
-                      choices = c(state.name),
-                      selected = "Alabama"
+                      label = "State",
+                      choices = c("Overall", state.names),
+                      selected = "Overall"
                       
           ),
         sliderInput(inputId = 'distinct.year',
-                    label = 'Years',
+                    label = 'Year',
                     min = 1960,
                     max = 2014,
-                    value = 1960,
+                    value = 2014,
                     sep = ''
         )
       ),
-               
+      
       mainPanel(
-        plotlyOutput("distinct.energy.type")
+        tabsetPanel(
+          tabPanel('Chart', plotlyOutput("distinct.energy.type")),
+          tabPanel('Table', 'placeholder')
+        )
       )
      )
     )
