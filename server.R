@@ -4,9 +4,11 @@ library(shiny)
 source('./scripts/Production.R')
 source('./scripts/BuildPieChart.R')
 source('./scripts/BuildMap.R')
+source('./scripts/ExpenditureBarChart.R')
 
 energy.prod <- read.csv("./data/clean/prod_clean.csv", stringsAsFactors = FALSE)
 energy.use <- read.csv("./data/clean/use_clean.csv", stringsAsFactors = FALSE)
+energy.expenditures <- read.csv("./data/clean/expense_clean.csv", stringsAsFactors = FALSE)
 
 Consumption <- read.csv('./data/use_all_btu.csv', stringsAsFactors = FALSE)
 Expenditure <- read.csv('./data/ex_all.csv', stringsAsFactors = FALSE)
@@ -22,4 +24,7 @@ shinyServer(function(input, output) {
   
   #map
   output$map <- renderPlotly(Build.Map(eval(parse(text = input$dataset)), input$select.year))
+  
+  # bar chart
+  output$bar <- renderPlotly(TotalBarChart(energy.expenditures, input$energy, input$year))
 })
