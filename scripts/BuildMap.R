@@ -32,7 +32,7 @@ map.data <- function(data, year) {
 #function to build map
 BuildMap <- function(data, first.year = 1960) {
   mapping.data <- map.data(data, first.year)
-  
+  cumulative <- sum(mapping.data$total)
   #map geo
   map.geo <- list(
     scope = 'usa',
@@ -41,7 +41,8 @@ BuildMap <- function(data, first.year = 1960) {
     lakecolor = toRGB('white')
   )
   
-  hover.text <- paste0(mapping.data$State, '<br>', 'Percentage of Total: ', mapping.data$total)
+  hover.text <- paste0(mapping.data$State, '<br>', 'Percentage of Total: ', 
+                       paste0(round(100*mapping.data$total / cumulative, 2), "%") )
   
   p <- plot_geo(mapping.data, locationmode = 'USA-states') %>% 
     add_trace(
@@ -55,4 +56,3 @@ BuildMap <- function(data, first.year = 1960) {
     )
   return(p)
 }
-
