@@ -97,7 +97,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     ),
   
   tabPanel("State analysis",
-    titlePanel("Consumption Expenditure Production by State"),
+    titlePanel("Production, Consumption, and Expenditure by State"),
     p("This map....(adding more)"),
     sidebarLayout(
       sidebarPanel(

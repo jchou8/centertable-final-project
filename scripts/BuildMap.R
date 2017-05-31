@@ -47,11 +47,11 @@ Build.Map <- function(data, first.year = 1970) {
   p <- plot_geo(mapping.data, locationmode = 'USA-states') %>% 
     add_trace(
       z = ~total, text = hover.text, locations = ~State,
-      color = ~total, colors = 'Purples'
+      autocolorscale = TRUE, opacity = 1
     ) %>% 
     colorbar(title = 'BTU') %>% 
     layout(
-      title = 'Test map',
+      title = 'USA Energy Map 1970-2014',
       geo = map.geo
     )
   return(p)
