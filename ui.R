@@ -121,10 +121,44 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
         plotlyOutput('map')
       )
     )
-           
-           
-           
-           
+  ),
+  
+  tabPanel("Expenditures",
+    titlePanel('Energy Expenditures by State and Energy Type'),
+    h3("Bar Chart Overview"),
+    p("This bar chart shows the differences between each state's expenditures.  This allows the user to see
+      which states pay the most for a certain type of energy.  Selecting the different energy types (select two max)
+      will present the user with a stacked bar chart allowing the user to compare which energy the state spends more on.
+      The year slider will show the corresponding plot with the data from that year."),
+    
+    sidebarLayout(
+      sidebarPanel(
+        # checkbox input for energy type
+        checkboxGroupInput("energy", 'Energy Types (Two Max)', # Can only do a max of two right now
+                           choiceNames = c("Total Energy", "Asphalt and Road Oil", "Aviation gasoline",                 
+                                           "Coal", "Distillate fuel",
+                                           "Electricity", "Jet fuel", "Kerosene",                          
+                                           "LPG", "Motor gasoline", "Natural gas",                       
+                                           "All petroleum products", "Petroleum coke", "Residual fuel oil ",                
+                                           "Wood and waste"),
+                           choiceValues = c("TET", "ART", "AVT", "CLT", "DFT", "EST", "JFT", "KST", "LGT", 
+                                            "MGT", "NGT", "PAT", "PCT", "RFT", "WWT"),
+                           selected = "Total Energy"),
+        # sliderInput for year
+        sliderInput("year",
+                    label = "Year",
+                    min = 1970,
+                    max = 2014,
+                    value = 2014,
+                    sep = '')
+        
+      ),
+      
+      # displays barplot
+      mainPanel(
+        plotlyOutput("bar")
+      )
+    )
   )
   )
 )
