@@ -94,6 +94,37 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
         )
       )
      )
+    ),
+  
+  tabPanel("State analysis",
+    titlePanel("Consumption Expenditure Production by State"),
+    p("This map....(adding more)"),
+    sidebarLayout(
+      sidebarPanel(
+        selectInput(
+          inputId = 'dataset',
+          label = 'Dataset',
+          choices = c('Production', 'Consumption', 'Expenditure'),
+          selected = 'Production'
+        ),
+        
+        sliderInput(inputId = 'select.year',
+                    label = 'Year',
+                    min = 1960,
+                    max = 2014,
+                    value = 2014,
+                    sep = ''
+        )
+      ),
+      
+      mainPanel(
+        plotOutput('map')
+      )
     )
+           
+           
+           
+           
+  )
   )
 )
