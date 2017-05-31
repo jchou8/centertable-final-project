@@ -118,7 +118,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
       ),
       
       mainPanel(
-        plotOutput('map')
+        plotlyOutput('map')
       )
     )
            
