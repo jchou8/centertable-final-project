@@ -9,18 +9,29 @@ production <- read.csv('data/prod_all.csv', stringsAsFactors = FALSE)
 
 
 
-#function to build map
-BuildMap <- function(data, first.year = 1960, last.year = 2014) {
-  year <- toString(first.year)
+map.data <- function(data, year) {
+  year <- toString(year)
   year <- paste0('X', year)
   
   #filtering data to a df with only state codes, and total consumption for each
   #state that specific year
+  
+  #https://stackoverflow.com/questions/10276092/to-find-whether-a-column-exists-in-data-frame-or-not
+  if("StateCode" %in% colnames(data)) {
+    #http://rprogramming.net/rename-columns-in-r/
+    colnames(data)[colnames(data)=="StateCode"] <- "State"
+  }
+  
   map.data <- data %>% select_(~State, year) %>% na.omit() %>% 
     #could not select year column otherwise for some reason
     mutate_(year = year) %>% select(State, year) %>% 
-    group_by(State) %>% summarise(total.consumption = sum(year))
-  
+    group_by(State) %>% summarise(total = sum(year))
+}
+
+
+#function to build map
+BuildMap <- function(data, first.year = 1960) {
+  mapping.data <- map.data(data, first.year)
   
   #map geo
   map.geo <- list(
@@ -30,19 +41,18 @@ BuildMap <- function(data, first.year = 1960, last.year = 2014) {
     lakecolor = toRGB('white')
   )
   
-  hover.text <- paste0(map.data$State, '<br>', 'Total consumption in btu: ', map.data$total.consumption)
+  hover.text <- paste0(mapping.data$State, '<br>', 'Percentage of Total: ', mapping.data$total)
   
-  p <- plot_geo(map.data, locationmode = 'USA-states') %>% 
+  p <- plot_geo(mapping.data, locationmode = 'USA-states') %>% 
     add_trace(
-      z = ~total.consumption, text = hover.text, locations = ~State,
-      color = ~total.consumption, colors = 'Purples'
+      z = ~total, text = hover.text, locations = ~State,
+      color = ~total, colors = 'Purples'
     ) %>% 
     colorbar(title = 'BTU') %>% 
     layout(
       title = 'Test map',
       geo = map.geo
     )
-  
+  return(p)
 }
 
-BuildMap(consumption)
