@@ -79,6 +79,4 @@ TotalBarChart <- function(data, energy.type, year) {
   return(p)
 }
 
-TotalBarChart(data, c("CLT", "LGT", "ART", "AVT"), 2012)
-
 
