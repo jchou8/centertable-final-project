@@ -36,7 +36,6 @@ BuildPieChart <- function(data, state = 'Overall', year = 2014){
   percent.of.total.btu <- sum(state.data[,'use'], na.rm = TRUE)*.01
   state.data <- filter(state.data, year_dif > percent.of.total.btu)
   
- 
   #cretae pie chart using values from given year and state
   #to show which energy types the state used
    p <- plot_ly(state.data, labels = ~Description, values = ~year_dif, type = 'pie',
