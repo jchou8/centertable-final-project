@@ -34,8 +34,8 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     p("The first tab contains a simple overview map that shows how energy trends vary between states.
        The next three tabs contains different visualizations that explores a different aspect of the data - 
        production, consumption, or expenditures. Each visualization allows the data to be considered at either the
-       nationwide level or a per-state level at various points in our nation's history. We have placed both an overview
-       and our conclusions that we have come to from each chart, underneath each visual."),
+       nationwide level or a per-state level at various points in our nation's history. Above each chart is an overview
+       describing the chart and its features, along with the conclusions that we have come to."),
     
     h3("Project Creators"),
     tags$ul(

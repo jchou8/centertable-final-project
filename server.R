@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
   output$consumption.table <- renderTable(ConsumptionData(energy.use, input$distinct.state, input$distinct.year))
   
   # map
-  output$map <- renderPlotly(Build.Map(eval(parse(text = input$dataset)), input$select.year))
+  output$map <- renderPlotly(Build.Map(eval(parse(text = input$dataset)), input$select.year, input$dataset))
   
   # bar chart
   output$bar <- renderPlotly(TotalBarChart(energy.expenditures, input$energy, input$year))

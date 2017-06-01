@@ -25,12 +25,13 @@ map.data <- function(data, year) {
   map.data <- data %>% select_(~State, year) %>% na.omit() %>% 
     #could not select year column otherwise for some reason
     mutate_(year = year) %>% select(State, year) %>% 
-    group_by(State) %>% summarise(total = sum(year))
+    group_by(State) %>% summarise(total = sum(year)) %>% 
+    filter(State != "US")
 }
 
 
 #function to build map
-Build.Map <- function(data, first.year = 1970) {
+Build.Map <- function(data, first.year = 1970, dataset) {
   mapping.data <- map.data(data, first.year)
   cumulative <- sum(mapping.data$total)
   avg <- median(mapping.data$total)
@@ -46,14 +47,19 @@ Build.Map <- function(data, first.year = 1970) {
                        paste0(round(100*mapping.data$total / cumulative, 2), '%'),
                        '<br>', 'National median: ', paste0(round(100*avg / cumulative, 2), '%'))
   
-  p <- plot_geo(mapping.data, locationmode = 'USA-states') %>% 
+  if (dataset == 'Expenditure') {
+     color.title <- 'Million dollars'
+  } else {
+     color.title <- 'Billion Btu'
+  }
+  
+  p <- plot_geo(mapping.data, locationmode = 'USA-states', width = 800, height = 600) %>% 
     add_trace(
-      z = ~total, text = hover.text, locations = ~State,
-      autocolorscale = TRUE, opacity = 1
+      z = ~total, text = hover.text, locations = ~State, colors = "Blues"
     ) %>% 
-    colorbar(title = 'BTU') %>% 
+    colorbar(title = color.title) %>% 
     layout(
-      title = 'USA Energy Map 1970-2014',
+      title = paste('USA Energy', dataset, 'Map', first.year),
       geo = map.geo
     )
   return(p)
