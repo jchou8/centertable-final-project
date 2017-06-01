@@ -44,7 +44,7 @@ Build.Map <- function(data, first.year = 1970) {
   
   hover.text <- paste0(mapping.data$State, '<br>', 'Percentage of Total: ', 
                        paste0(round(100*mapping.data$total / cumulative, 2), '%'),
-                       '<br>', 'National Median: ', paste0(round(100*avg / cumulative, 2), '%'))
+                       '<br>', 'National median: ', paste0(round(100*avg / cumulative, 2), '%'))
   
   p <- plot_geo(mapping.data, locationmode = 'USA-states') %>% 
     add_trace(

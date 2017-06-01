@@ -31,18 +31,6 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     )
   ),
     
-  tabPanel("Energy by State",
-    sidebarLayout(
-      sidebarPanel(
-        selectInput("state",
-          label = "Choose a state: ",
-           choices = state.names
-        )
-      ),     
-      mainPanel()
-    )
-  ),
-    
   tabPanel("Production",
     titlePanel('Energy Production By Type'),
     p("This chart displays energy production for each year, separated into four major categories: coal, crude oil, natural gas, and renewable. The data can be filtered down to a specific state and range of years."),
@@ -96,9 +84,11 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
      )
     ),
   
-  tabPanel("State analysis",
+  tabPanel("Energy by State",
     titlePanel("Production, Consumption, and Expenditure by State"),
-    p("This map....(adding more)"),
+    p("This map shows production, consumption, or expenditure data by State for a given year. 
+      The dataset can be selected with the drop down menu, and the year can be adjusted with the slider.
+      Hovering over a state will display detailed comparison information."),
     sidebarLayout(
       sidebarPanel(
         selectInput(
