@@ -34,7 +34,8 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     p("The first tab contains a simple overview map that shows how energy trends vary between states.
        The next three tabs contains different visualizations that explores a different aspect of the data - 
        production, consumption, or expenditures. Each visualization allows the data to be considered at either the
-       nationwide level or a per-state level at various points in our nation's history."),
+       nationwide level or a per-state level at various points in our nation's history. We have placed both an overview
+       and our conclusions that we have come to from each chart, underneath each visual."),
     
     h3("Project Creators"),
     tags$ul(
@@ -112,8 +113,9 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     p("We have concluded from our chart and analysis that overall our country is beginning to find new renewable 
        energy sources like geothermal, solar, and wind energy. However, we are not growing the use of these sources
        at a fast pace. It is clear some states have made a concerted effort to boost renewable energy consumption, while
-       some states, like Texas, have made less progress. The states that have been most succesful in consuming more
-       renewable energy are states that have ramped up consumption of one distinct type of renewable energy."),
+       some states, have made less progress. The states that have been most succesful in consuming more
+       renewable, like Washington, Maine, and Idaho, are states that have specifically ramped up consumption of one 
+       distinct type of renewable energy."),
     sidebarLayout(
       sidebarPanel(
         selectInput(inputId = 'distinct.state',
