@@ -5,16 +5,20 @@ library(shiny)
 TotalBarChart <- function(data, energy.type, year) {
   
   # the input energy choices
-  names <- c("Total Energy", "Asphalt and Road Oil", "Aviation gasoline",                 
-    "Coal", "Distillate fuel", "Fuel ethanol, excluding denaturant",
-    "Electricity", "Jet fuel", "Kerosene",                          
-    "LPG", "Motor gasoline", "Natural gas",                       
-    "All petroleum products", "Petroleum coke", "Residual fuel oil ",                
-    "Wood and waste")
+  names <- c("Total Energy", "Asphalt and road oil", "Aviation gasoline",                 
+                    "Coal", "Distillate fuel", "Fuel ethanol",
+                    "Electricity", "Jet fuel", "Kerosene",                          
+                    "Liquefied petroleum gases", "Motor gasoline", "Natural gas", "Petroleum coke", "Residual fuel oil",                
+                    "Wood and waste")
   
   # the input energy choice values given
-  name.code <- c("TET", "ART", "AVT", "CLT", "DFT", "EMT", "EST", "JFT", "KST", "LGT", 
-                 "MGT", "NGT", "PAT", "PCT", "RFT", "WWT")
+  name.code <- c("TET", "ART", "AVT", "CLT", "DFT", "EMT", "EST", "JFT", "KST", "LGT", "MGT", "NGT", "PCT", "RFT", "WWT")
+  
+  # Remove fuel ethanol past 1992
+  if (year > 1992) {
+    energy.type <- energy.type[energy.type != "EMT"]
+  }
+  
   # data frame that associates the energy names and its codes.
   prop.name <- data.frame(names, name.code)
   
@@ -58,7 +62,7 @@ TotalBarChart <- function(data, energy.type, year) {
     }
     
     # adds the layout to the plot
-    p <- p %>% layout(title = paste("Selected Energies by State, in", year), 
+    p <- p %>% layout(title = paste("Energy Expenditure by State in", year), 
                       barmode = "stack",
                       xaxis = list(title = "State"),
                       yaxis = list(title = "Expenditures (Million Dollars)"), margin = c(b = 300))
@@ -70,7 +74,7 @@ TotalBarChart <- function(data, energy.type, year) {
                  y = ~chart.year,
                  type = "bar",
                  hovertext = ~paste0("State: ", StateName, "<br>$", chart.year,"M")) %>% 
-      layout(title = paste(prop.name$names[name.code == energy.type], "by State, in", year),
+      layout(title = paste(prop.name$names[name.code == energy.type], "by State in", year),
              xaxis = list(title = "State"),
              yaxis = list(title = paste("Expenditures (Million Dollars)")),
              margin = c(b = 300))

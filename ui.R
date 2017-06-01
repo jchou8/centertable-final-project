@@ -6,14 +6,12 @@ library(plotly)
 # Get list of state names for use in widgets
 states <- read.csv("./data/state_codes.csv", stringsAsFactors = FALSE)
 state.names <- states$StateName[1:51]
-energy.types <- c("Total Energy", "Asphalt and Road Oil", "Aviation gasoline",                 
-                 "Coal", "Distillate fuel", "Fuel ethanol, excluding denaturant",
-                 "Electricity", "Jet fuel", "Kerosene",                          
-                 "LPG", "Motor gasoline", "Natural gas",                       
-                 "All petroleum products", "Petroleum coke", "Residual fuel oil ",                
-                 "Wood and waste")
-energy.codes <- c("TET", "ART", "AVT", "CLT", "DFT", "EMT", "EST", "JFT", "KST", "LGT", 
-                  "MGT", "NGT", "PAT", "PCT", "RFT", "WWT")
+energy.types <- c("Total Energy", "Asphalt and road oil", "Aviation gasoline",                 
+                  "Coal", "Distillate fuel", "Fuel ethanol",
+                  "Electricity", "Jet fuel", "Kerosene",                          
+                  "Liquefied petroleum gases", "Motor gasoline", "Natural gas", "Petroleum coke", "Residual fuel oil",                
+                  "Wood and waste")
+energy.codes <- c("TET", "ART", "AVT", "CLT", "DFT", "EMT", "EST", "JFT", "KST", "LGT", "MGT", "NGT", "PCT", "RFT", "WWT")
 
 # Set up UI
 shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
@@ -132,8 +130,8 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
   tabPanel("Expenditures",
     titlePanel('Energy Expenditures by State and Energy Type'),
     h3("Bar Chart Overview"),
-    p("This bar chart shows the differences between each state's expenditures.  This allows the user to see
-      which states pay the most for a certain type of energy.  Selecting the different energy types (select two max)
+    p("This bar chart shows the differences between each state's expenditures. This allows the user to see
+      which states pay the most for a certain type of energy.  Selecting the different energy types
       will present the user with a stacked bar chart allowing the user to compare which energy the state spends more on.
       The year slider will show the corresponding plot with the data from that year."),
     
@@ -158,7 +156,9 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
       mainPanel(
         plotlyOutput("bar", height = "600px")
       )
-    )
+    ),
+    
+    p("Note: after 1992, fuel ethanol data is incuded in motor gasoline data.")
   )
   )
 )
