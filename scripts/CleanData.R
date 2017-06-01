@@ -9,6 +9,10 @@ energy.prod <- read.csv("../data/prod_all.csv", stringsAsFactors = FALSE)
 energy.expense <- read.csv("../data/ex_all.csv", stringsAsFactors = FALSE)
 
 # Filter data categories to only the categories we're interested in
+msn.codes.sectors <- msn.codes %>% filter(Unit == "Billion Btu") %>% 
+                                   filter(substr(MSN, 5, 5) == "B", substr(MSN, 3, 3) != "T") %>% 
+                                   select(-Unit)
+
 msn.codes <- msn.codes %>% filter(Unit == "Billion Btu" | Unit == "Million dollars") %>% 
                            filter((substr(MSN, 3, 3) == "T" & substr(MSN, 4, 4) == "C") | substr(MSN, 3, 5) == "PRB" | MSN == "NGMPB" | 
                                    MSN == "NUETV") %>% 
@@ -19,6 +23,10 @@ msn.codes <- msn.codes %>% filter(Unit == "Billion Btu" | Unit == "Million dolla
 energy.use <- inner_join(energy.use, msn.codes, by = "MSN") %>% 
               inner_join(state.codes, by = "State") %>% 
               select(-Data_Status)
+
+energy.use.by.sector <- inner_join(energy.use, msn.codes.sectors, by = "MSN") %>% 
+                        inner_join(state.codes, by = "State") %>% 
+                        select(-Data_Status)
 
 energy.prod <- inner_join(energy.prod, msn.codes, by = "MSN") %>% 
                mutate(State = StateCode) %>% 
@@ -31,5 +39,6 @@ energy.expense <- inner_join(energy.expense, msn.codes, by = "MSN") %>%
 
 # Export data
 write.csv(energy.use, file = "../data/clean/use_clean.csv")
+write.csv(energy.use.by.sector, file = "../data/clean/use_by_sector.csv")
 write.csv(energy.prod, file = "../data/clean/prod_clean.csv")
 write.csv(energy.expense, file = "../data/clean/expense_clean.csv")

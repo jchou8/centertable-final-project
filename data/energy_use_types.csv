@@ -1,0 +1,57 @@
+Type,Name
+AB,Aviation Gasoline Blending Components
+AR,Asphalt And Road Oil
+AV,Aviation Gasoline
+BM,Biomass
+CC,Coal Coke
+CL,Coal
+CO,"Crude Oil, Including Lease Condensate"
+DF,Distillate Fuel Oil
+DK,"Distillate Fuel Oil, Including Kerosene-Type Jet Fuel"
+EL,Electricity
+EM,"Fuel Ethanol, Excluding Denaturant"
+EN,"Fuel Ethanol, Including Denaturant"
+ES,Electricity Sales
+FF,Fossil Fuels
+FN,"Petrochemical Feedstocks, Naphtha Less Than 401 Degrees F"
+FO,"Petrochemical Feedstocks, Other Oils Equal To Or Greater Than 401 Degrees F"
+FS,"Petrochemical Feedstocks, Still Gas"
+GE,Geothermal Energy
+HY,Hydroelectric Power
+JF,"Jet Fuel, Total"
+JK,Kerosene-Type Jet Fuel
+JN,Naphtha-Type Jet Fuel
+KS,Kerosene
+LG,Liquefied Petroleum Gases
+LO,Electrical System Energy Losses
+LU,Lubricants
+MB,Motor Gasoline Blending Components
+MG,Motor Gasoline
+MM,Motor Gasoline Excluding Fuel Ethanol
+MS,Miscellaneous Petroleum Products
+NA,Natural Gasoline (Including Isopentane)
+NG,Natural Gas
+NN,Natural Gas Excluding Supplemental Gaseous Fuels
+NU,Nuclear Electric Power
+P1,"Asphalt And Road Oil, Aviation Gasoline, Kerosene, Lubricants, And ""Other Petroleum Products"""
+PA,All Petroleum Products
+PC,Petroleum Coke
+PL,Plant Condensate
+PM,"All Petroleum Products, Excluding Fuel Ethanol Blended Into Motor Gasoline"
+PO,Other Petroleum Products (Sum Of Petroleum Coke And 15 Petroleum Products)
+PP,Pentanes Plus
+RE,Renewable Energy
+RF,Residual Fuel Oil
+SF,Supplemental Gaseous Fuels
+SG,Still Gas
+SN,Special Naphthas
+SO,Solar Thermal And Photovoltaic Energy
+TE,Total Energy
+TN,Total Net Energy
+UO,Unfinished Oils
+US,Unfractionated Streams
+WD,Wood
+WS,Biomass Waste
+WW,Wood And Biomass Waste
+WX,Waxes
+WY,Wind
