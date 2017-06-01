@@ -9,8 +9,8 @@ energy.prod <- read.csv("../data/prod_all.csv", stringsAsFactors = FALSE)
 energy.expense <- read.csv("../data/ex_all.csv", stringsAsFactors = FALSE)
 
 # Filter data categories to only the categories we're interested in
-msn.codes.sectors <- msn.codes %>% filter(Unit == "Billion Btu" | Unit == "Million dollars") %>% 
-                                   filter(substr(MSN, 4, 5) == "CB", substr(MSN, 3, 3) != "T") %>% 
+msn.codes.sectors <- msn.codes %>% filter(Unit == "Billion Btu") %>% 
+                                   filter(substr(MSN, 5, 5) == "B", substr(MSN, 3, 3) != "T") %>% 
                                    select(-Unit)
 
 msn.codes <- msn.codes %>% filter(Unit == "Billion Btu" | Unit == "Million dollars") %>% 
