@@ -46,7 +46,11 @@ ConsumptionData <- function(data, state = 'Overall', year = 2014) {
                        Description != 'Motor gasoline',
                        Description != 'Petroleum coke',
                        Description != 'Residual fuel oil',
-                       Description != 'Electricity')
+                       Description != 'Electricity',
+                       Description != 'Naphtha-type jet fuel',
+                       Description != 'Fossil fuels',
+                       Description != 'Renewable energy',
+                       Description != 'Supplemental gaseous fuels')
   
   return(state.data)
 }
@@ -59,22 +63,22 @@ BuildPieChart <- function(data, state = 'Overall', year = 2014){
   
   #filter data so that pie chart only shows energy types that make up
   #1.5 percent or higher of total state energy consumption
-  percent.of.total.btu <- sum(state.data[,'use'], na.rm = TRUE)*.01
-  state.data <- filter(state.data, use > percent.of.total.btu)
+  #percent.of.total.btu <- sum(state.data[,'use'], na.rm = TRUE)*.01
+  #state.data <- filter(state.data, use > percent.of.total.btu)
   
   #cretae pie chart using values from given year and state
   #to show which energy types the state used
    p <- plot_ly(state.data, labels = ~Description, values = ~use, type = 'pie',
-          textposition = 'outside',
           textinfo = 'label+percent',
           showlegend = FALSE,
+          insidetextfont = list(color = '#FFFFFF'),
           hoverinfo = 'text',
           text = ~paste(use, 'billion Btu')
   ) %>% 
-    layout(title= paste0(state, ' Energy Consumption by Energy Type in ', substr(year, 2, 5)),
+    layout(title = paste0(state, ' Energy Consumption by Energy Type in ', year),
            xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-           autosize = FALSE, width = 800, height = 800
+           autosize = FALSE, width = 1000, height = 800, margin = list(r = 200, b = 200)
     )
   
    return(p)
