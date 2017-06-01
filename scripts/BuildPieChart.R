@@ -31,7 +31,22 @@ ConsumptionData <- function(data, state = 'Overall', year = 2014) {
   
   #Filter data to get only whats needed for pie chart
   state.data <- select(state.data, Description, use) %>% filter(!grepl('excluding', Description)) %>% 
-    filter(Description != 'Total energy consumption') %>% filter(Description != 'Total electrical system energy losses')
+                filter(Description != 'Total energy consumption',
+                       Description != 'Total electrical system energy losses',
+                       Description != 'Asphalt and road oil aviation gasoline kerosene lubricants and other petroleum products',
+                       Description != 'Other petroleum products',
+                       Description != 'Asphalt and road oil',
+                       Description != 'Aviation gasoline',
+                       Description != 'Distillate fuel oil',
+                       Description != 'Jet fuel',
+                       Description != 'Kerosene-type jet fuel',
+                       Description != 'Kerosene',
+                       Description != 'LPG',
+                       Description != 'Lubricants',
+                       Description != 'Motor gasoline',
+                       Description != 'Petroleum coke',
+                       Description != 'Residual fuel oil',
+                       Description != 'Electricity')
   
   return(state.data)
 }
@@ -50,9 +65,11 @@ BuildPieChart <- function(data, state = 'Overall', year = 2014){
   #cretae pie chart using values from given year and state
   #to show which energy types the state used
    p <- plot_ly(state.data, labels = ~Description, values = ~use, type = 'pie',
-          textposition = 'inside',
+          textposition = 'outside',
           textinfo = 'label+percent',
-          showlegend =FALSE
+          showlegend = FALSE,
+          hoverinfo = 'text',
+          text = ~paste(use, 'billion Btu')
   ) %>% 
     layout(title= paste0(state, ' Energy Consumption by Energy Type in ', substr(year, 2, 5)),
            xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
