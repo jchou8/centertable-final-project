@@ -22,13 +22,21 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
   tabPanel("Overview",
     titlePanel('Project Overview'),
     h3("The Report"),
-    p("This report provides a broad overview of energy consumption, production, and expenditure data. eh"),
+    p("This report provides a broad overview of energy consumption, production, and expenditure data.
+        The intention of this report is to educate the general public on how our nation's energy consumption,
+        production, and expenditure has changed over time. Our primary audience is anyone who is interested the
+        environment, or our nations energy overview. In addition anyone who is interested in a distcint type
+        of energy can track how that energy's usage has changed over time. "),
     h3("Data"),
     p("The dataset we are working with contains data on energy consumption, production, and expenditures from 1960 to 2014. 
        This data was collected by the US Energy Information Administration, a part of the US Department of Energy, 
        and is publicly available here: ",
       a("State Energy Data System", href = "https://www.eia.gov/state/seds/seds-data-complete.php?sid=US#CompleteDataFile")
     ),
+    h3("Structure"),
+    p("We designed our application to be multiple visauls that allowed users to better understand the change
+        expenditure in the U.S.. Each visual allows users to explore differernt apects our nations energy
+        history. Each interactive visual can be used to answer unique energy questions."),
     
     h3("Project Creators"),
     tags$ul(
