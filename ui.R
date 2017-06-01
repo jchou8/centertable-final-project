@@ -49,13 +49,14 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     titlePanel("Production, Consumption, and Expenditure by State"),
     p("This map shows production, consumption, or expenditure data by State for a given year. 
        The dataset can be selected with the drop down menu, and the year can be adjusted with the slider.
-        Hovering over a state will display detailed comparison information."),
+        Hovering over a state will display detailed comparison information. The units of Production and Consumption 
+      are British Thermal Units (BTU), and the units of Expenditure is millions of dollars ($M)"),
     sidebarLayout(
       sidebarPanel(
         selectInput(
           inputId = 'dataset',
           label = 'Dataset',
-          choices = c('Production', 'Consumption', 'Expenditure'),
+          choices = list('Production (BTU)' = 'Production', 'Consumption (BTU)' = 'Consumption', 'Expenditure ($M)' = 'Expenditure'),
           selected = 'Production'
         ),
              
