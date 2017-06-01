@@ -22,8 +22,14 @@ BuildPieChart <- function(data, state = 'Overall', year = 2014){
     state.data <- filter(data, StateName == state)
   }
   
+  #Take end phrases off of descriptions to make labels on pie chart more clear
+  state.data$Description <- gsub(' total consumption', '', state.data$Description)
+  state.data$Description <- gsub(' total consumed', '', state.data$Description)
+  
+  #Filter data to get only whats needed for pie chart
   state.data <- select(state.data, use, Description) %>% filter(!grepl('excluding', Description)) %>% 
-    filter(Description != 'Total energy consumption.')%>% mutate(year_dif = use)
+    filter(Description != 'Total energy consumption.') %>% filter(Description != 'Total electrical system energy losses.')%>% 
+    mutate(year_dif = use)
   
   #filter data so that pie chart only shows energy types that make up
   #1.5 percent or higher of total state energy consumption
