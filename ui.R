@@ -23,7 +23,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
         The purpose of this report is to educate the general public on how our nation's energy consumption,
         production, and expenditure has changed over time, with an emphasis on renewable vs. nonrenewable energy.
         We believe that people should be more concerned with the state of the environment and hope that our report
-        will motivate people to consider the importance of renewable energy"),
+        will motivate people to consider the importance of renewable energy and our planet's future."),
     h3("Data"),
     p("The dataset we are working with contains data on energy consumption, production, and expenditures from 1960 to 2014. 
        This data was collected by the US Energy Information Administration, a part of the US Department of Energy, 
@@ -76,7 +76,16 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
   
   tabPanel("Production",
     titlePanel('Energy Production By Type'),
-    p("This chart displays energy production over time, separated into four major categories: coal, crude oil, natural gas, and renewable. The data can be filtered down to a specific state and range of years."),
+    p("This chart displays energy production over time, separated into four major categories: 
+      coal, crude oil, natural gas, and renewable. The data can be filtered down to a specific state and range of years."),
+    
+    p("From this chart, we can see that renewable energy production has been slowly growing over the past 50 years.
+       However, non-renewable sources still make up an overwhelming majority of our energy production, 
+       and both crude oil and natural gas production have sharply increased recently. 
+       For example, starting around 2010, natural gas energy production skyrocketed in Pennsylvania and Arkanasas, 
+       and crude oil production skyrocketed in North Dakota and Texas.
+       Despite advances in renewable energy, it seems that it is currently not growing fast enough to keep up with the 
+       overall increased demand for energy, so it is imperative that we continue to push for advances in renewable and clean energy."),
            
     sidebarLayout(
       sidebarPanel(
@@ -100,11 +109,11 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
        consuming the most/least of. All units are in billions of BTUs. The chart can be filtered by 
        year to see how a state has changed which energy it is consuming over time. 
        Observe how certain energy types have emerged and diminished between various states."),
-    p("We have concluded from our chart and analysis that overall our country is beggining to find new reneawble 
+    p("We have concluded from our chart and analysis that overall our country is beginning to find new renewable 
        energy sources like geothermal, solar, and wind energy. However, we are not growing the use of these sources
-       at a fast pace. It is clear some states have made a conceded effort to boost renewable energy consumption, while
-       some states, like Texas, have made no effort. The states that have been most succesful in consuming more
-       renewable energy are states that have ramped up consumption of one distinct type of renewable enery."),
+       at a fast pace. It is clear some states have made a concerted effort to boost renewable energy consumption, while
+       some states, like Texas, have made less progress. The states that have been most succesful in consuming more
+       renewable energy are states that have ramped up consumption of one distinct type of renewable energy."),
     sidebarLayout(
       sidebarPanel(
         selectInput(inputId = 'distinct.state',
