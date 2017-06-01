@@ -29,7 +29,7 @@ TotalBarChart <- function(data, energy.type, year) {
   if ("TET" %in% energy.type) { #change to "All" if necessary
     edited.data <- edited.data %>% filter(Description == "Total energy expenditures.")
   } else {
-    edited.data <- edited.data %>% filter(MSN %in% paste0(energy.type, "CV")) 
+    edited.data <- edited.data %>% filter(MSN %in% paste0(energy.type, "CV"))
   }
   
   # Sort to see if it has multiple energies from the selection or that it does not contain Total Energy
@@ -46,18 +46,14 @@ TotalBarChart <- function(data, energy.type, year) {
       bar.data <- right_join(bar.data, energy.data)
     }
     
-    # Draws the initial bar chart with the first energy in the vector
-    p <- plot_ly(bar.data,
-                 x = ~StateName,
-                 y = ~eval(parse(text = energy.type[1])),
-                 type = "bar",
-                 hovertext = ~paste0("State: ", StateName, "<br>$", eval(parse(text = energy.type[1])),"M"),
-                 name = prop.name$names[name.code == energy.type[1]])
-    energy.temp <- energy.type[-1]
-    # loops through each type of energy given except the first, already printed one.
-    for (energy in energy.temp) {
-      p <- p %>% add_trace( y = ~eval(parse(text = energy)),
-                           hovertext = ~paste0("State: ", StateName, "<br>$", eval(parse(text = energy)),"M"),
+    # Initialize the bar chart
+    p <- plot_ly(type = "bar")
+    
+    # loops through each type of energy given
+    for (energy in energy.type) {
+      temp.data <- bar.data %>% select_(~StateName, energy) %>% mutate_(expense = energy)
+      p <- p %>% add_trace(data = temp.data, x = ~StateName, y = ~expense, hoverinfo = 'text',
+                           hovertext = ~paste0("State: ", StateName, "<br>$", expense,"M"),
                            name = prop.name$names[name.code == energy])
     }
     
@@ -83,6 +79,6 @@ TotalBarChart <- function(data, energy.type, year) {
   return(p)
 }
 
-# TotalBarChart(data, c("CLT", "LGT", "ART", "AVT"), 2012) tester
+TotalBarChart(data, c("CLT", "LGT", "ART", "AVT"), 2012)
 
 

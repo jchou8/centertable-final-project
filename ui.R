@@ -6,6 +6,14 @@ library(plotly)
 # Get list of state names for use in widgets
 states <- read.csv("./data/state_codes.csv", stringsAsFactors = FALSE)
 state.names <- states$StateName[1:51]
+energy.types <- c("Total Energy", "Asphalt and Road Oil", "Aviation gasoline",                 
+                 "Coal", "Distillate fuel", "Fuel ethanol, excluding denaturant",
+                 "Electricity", "Jet fuel", "Kerosene",                          
+                 "LPG", "Motor gasoline", "Natural gas",                       
+                 "All petroleum products", "Petroleum coke", "Residual fuel oil ",                
+                 "Wood and waste")
+energy.codes <- c("TET", "ART", "AVT", "CLT", "DFT", "EMT", "EST", "JFT", "KST", "LGT", 
+                  "MGT", "NGT", "PAT", "PCT", "RFT", "WWT")
 
 # Set up UI
 shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
@@ -124,16 +132,10 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     sidebarLayout(
       sidebarPanel(
         # checkbox input for energy type
-        checkboxGroupInput("energy", 'Energy Types (Two Max)', # Can only do a max of two right now
-                           choiceNames = c("Total Energy", "Asphalt and Road Oil", "Aviation gasoline",                 
-                                           "Coal", "Distillate fuel",
-                                           "Electricity", "Jet fuel", "Kerosene",                          
-                                           "LPG", "Motor gasoline", "Natural gas",                       
-                                           "All petroleum products", "Petroleum coke", "Residual fuel oil ",                
-                                           "Wood and waste"),
-                           choiceValues = c("TET", "ART", "AVT", "CLT", "DFT", "EST", "JFT", "KST", "LGT", 
-                                            "MGT", "NGT", "PAT", "PCT", "RFT", "WWT"),
-                           selected = "Total Energy"),
+        checkboxGroupInput("energy", 'Energy Types', # Can only do a max of two right now
+                           choiceNames = energy.types,
+                           choiceValues = energy.codes,
+                           selected = energy.codes[-1]),
         # sliderInput for year
         sliderInput("year",
                     label = "Year",
@@ -146,7 +148,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
       
       # displays barplot
       mainPanel(
-        plotlyOutput("bar")
+        plotlyOutput("bar", height = "600px")
       )
     )
   )
