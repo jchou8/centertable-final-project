@@ -153,7 +153,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
         checkboxGroupInput("energy", 'Energy Types',
                            choiceNames = energy.types,
                            choiceValues = energy.codes,
-                           selected = energy.codes[-1]),
+                           selected = c("DFT", "EST", "JFT", "LGT", "MGT", "NGT")),
         # sliderInput for year
         sliderInput("year",
                     label = "Year",
