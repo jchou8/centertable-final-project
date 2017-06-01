@@ -157,11 +157,10 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
       expenditures in a few more years."),
     p("Both Motor Gasoline and Electricity have been going up over the years between the 1970s to the 2000s. Even as other energy
       types rise, the expenditures on Motor Gasoline and Electricity seem to be growing at a constant rate in terms of expenditure. This is most 
-      likely due to the wide use of vehicles and electricity in every single state.  The more frequent use of cars and other motor vehicles 
+      likely due to the wide use of vehicles and electricity in every single state. The more frequent use of cars and other motor vehicles 
       will increase this expenditure in the future. Although this trend is not currently present in the data, the growing use of smart
-      vehicles that run off of electricity instead of gasoline could change the outcome of the graphs further in the future. The expenditures 
-      on electricity will probably not decrease since the the United States's needs of technology will seemingly not change any time soon. 
-      Since electricity is strongly interwoven into the United State's society, the likelyhood of these expenditures going down is close to none. 
+      vehicles that run off of electricity instead of gasoline could change the outcome of the graphs further in the future. 
+      Since electricity is strongly interwoven into US society and infrastructure, the likelihood of electricity expenditures going down is close to none. 
       This is shown in the upward trend of Electricity in the bar charts over all the years."),
     
     sidebarLayout(
