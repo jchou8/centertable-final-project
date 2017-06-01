@@ -119,7 +119,9 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
        at a fast pace. It is clear some states have made a concerted effort to boost renewable energy consumption, while
        some states, have made less progress. The states that have been most succesful in consuming more
        renewable, like Washington, Maine, and Idaho, are states that have specifically ramped up consumption of one 
-       distinct type of renewable energy."),
+       distinct type of renewable energy. To conitnue to push towards more renewable energy usage, we belive that 
+       each state needs to find a distinct renewable energy source that they can easily develop, and put most of their effort
+       into this source."),
     sidebarLayout(
       sidebarPanel(
         selectInput(inputId = 'distinct.state',
