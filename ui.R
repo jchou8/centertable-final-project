@@ -46,6 +46,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     )
   ),
   
+  # State map
   tabPanel("Energy by State",
     titlePanel("Production, Consumption, and Expenditure by State"),
     p("This map shows production, consumption, or expenditure data by State for a given year. 
@@ -75,6 +76,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     )
   ),
   
+  # Production line graph
   tabPanel("Production",
     titlePanel('Energy Production By Type'),
     p("This chart displays energy production over time, separated into four major categories: 
@@ -104,6 +106,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     )
   ),
     
+  # Consumption pie chart
   tabPanel("Consumption",
     titlePanel('Energy Consumption By Energy Type'),
     p("The following pie chart is intended to give an idea of which energy types a given state is 
@@ -142,6 +145,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
      )
     ),
   
+  # Expenditure bar chart
   tabPanel("Expenditures",
     titlePanel('Energy Expenditures by State and Energy Type'),
     p("This bar chart shows the differences between each state's expenditures. This allows the user to see

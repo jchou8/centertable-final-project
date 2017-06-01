@@ -35,7 +35,8 @@ Build.Map <- function(data, first.year = 1970, dataset) {
   mapping.data <- map.data(data, first.year)
   cumulative <- sum(mapping.data$total)
   avg <- median(mapping.data$total)
-  #map geo
+  
+  # Set map geography and appearance
   map.geo <- list(
     scope = 'usa',
     projection = list(type = 'albers usa'),
@@ -43,20 +44,21 @@ Build.Map <- function(data, first.year = 1970, dataset) {
     lakecolor = toRGB('white')
   )
   
+  # Set hover annotations
   hover.text <- paste0(mapping.data$State, '<br>', 'Percentage of Total: ', 
                        paste0(round(100*mapping.data$total / cumulative, 2), '%'),
                        '<br>', 'National median: ', paste0(round(100*avg / cumulative, 2), '%'))
   
+  # Change legend depending on what's being mapped
   if (dataset == 'Expenditure') {
      color.title <- 'Million dollars'
   } else {
      color.title <- 'Billion Btu'
   }
   
+  # Create the plot
   p <- plot_geo(mapping.data, locationmode = 'USA-states', width = 800, height = 600) %>% 
-    add_trace(
-      z = ~total, text = hover.text, locations = ~State, colors = "Blues"
-    ) %>% 
+    add_trace(z = ~total, text = hover.text, locations = ~State, colors = "Blues") %>% 
     colorbar(title = color.title) %>% 
     layout(
       title = paste('USA Energy', dataset, 'Map', first.year),
