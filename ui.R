@@ -97,9 +97,14 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
   tabPanel("Consumption",
     titlePanel('Energy Consumption By Energy Type'),
     p("The following pie chart is intended to give an idea of which energy types a given state is 
-                      consuming the most/least of. All units are in billions of BTUs. The chart can be filtered by 
-                      year to see how a state has changed which energy it is consuming over time. 
-                      Observe how certain energy types have emerged and diminished between various states."),
+       consuming the most/least of. All units are in billions of BTUs. The chart can be filtered by 
+       year to see how a state has changed which energy it is consuming over time. 
+       Observe how certain energy types have emerged and diminished between various states."),
+    p("We have concluded from our chart and analysis that overall our country is beggining to find new reneawble 
+       energy sources like geothermal, solar, and wind energy. However, we are not growing the use of these sources
+       at a fast pace. It is clear some states have made a conceded effort to boost renewable energy consumption, while
+       some states, like Texas, have made no effort. The states that have been most succesful in consuming more
+       renewable energy are states that have ramped up consumption of one distinct type of renewable enery."),
     sidebarLayout(
       sidebarPanel(
         selectInput(inputId = 'distinct.state',
