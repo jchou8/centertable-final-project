@@ -5,10 +5,8 @@ library(plotly)
 #import consupmtion data
 use.data <- read.csv('data/clean/use_clean.csv', stringsAsFactors = FALSE)
 
-#Create function that takes in a data set, state and year and returns 
-#a pie chart with info regaurding energy consumption in given state and year
-BuildPieChart <- function(data, state = 'Overall', year = 2014){
-  #put an x on the year
+
+ConsumptionData <- function(data, state = 'Overall', year = 2014) {
   year <- toString(year)
   year <- paste0('X',year)
   
@@ -23,26 +21,35 @@ BuildPieChart <- function(data, state = 'Overall', year = 2014){
   }
   
   #Take end phrases off of descriptions to make labels on pie chart more clear
-  state.data$Description <- gsub(' total consumption', '', state.data$Description)
-  state.data$Description <- gsub(' total consumed', '', state.data$Description)
-  state.data$Description <- gsub(' (including supplemental gaseous fuels)', '', state.data$Description)
-  state.data$Description <- gsub(' (i.e., sold)', '', state.data$Description)
-  state.data$Description <- gsub('.', '', state.data$Description)
+  state.data$Description <- gsub('total consumption', '', state.data$Description)
+  state.data$Description <- gsub('total consumed', '', state.data$Description)
+  state.data$Description <- gsub('\\(including supplemental gaseous fuels\\)', '', state.data$Description)
+  state.data$Description <- gsub('\\(i.e., sold\\)', '', state.data$Description)
+  state.data$Description <- gsub('\\.', '', state.data$Description)
   state.data$Description <- gsub(',', '', state.data$Description)
+  state.data$Description <- trimws(state.data$Description)
   
   #Filter data to get only whats needed for pie chart
-  state.data <- select(state.data, use, Description) %>% filter(!grepl('excluding', Description)) %>% 
-    filter(Description != 'Total energy consumption.') %>% filter(Description != 'Total electrical system energy losses.')%>% 
-    mutate(year_dif = use)
+  state.data <- select(state.data, Description, use) %>% filter(!grepl('excluding', Description)) %>% 
+    filter(Description != 'Total energy consumption') %>% filter(Description != 'Total electrical system energy losses')
+  
+  return(state.data)
+}
+
+#Create function that takes in a data set, state and year and returns 
+#a pie chart with info regaurding energy consumption in given state and year
+BuildPieChart <- function(data, state = 'Overall', year = 2014){
+  #put an x on the year
+  state.data <- ConsumptionData(data, state, year)
   
   #filter data so that pie chart only shows energy types that make up
   #1.5 percent or higher of total state energy consumption
   percent.of.total.btu <- sum(state.data[,'use'], na.rm = TRUE)*.01
-  state.data <- filter(state.data, year_dif > percent.of.total.btu)
+  state.data <- filter(state.data, use > percent.of.total.btu)
   
   #cretae pie chart using values from given year and state
   #to show which energy types the state used
-   p <- plot_ly(state.data, labels = ~Description, values = ~year_dif, type = 'pie',
+   p <- plot_ly(state.data, labels = ~Description, values = ~use, type = 'pie',
           textposition = 'inside',
           textinfo = 'label+percent',
           showlegend =FALSE

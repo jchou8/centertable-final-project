@@ -94,7 +94,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
       mainPanel(
         tabsetPanel(
           tabPanel('Chart', plotlyOutput("distinct.energy.type")),
-          tabPanel('Table', 'placeholder')
+          tabPanel('Table', tableOutput('consumption.table'))
         )
       )
      )

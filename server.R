@@ -20,9 +20,11 @@ shinyServer(function(input, output) {
   output$production.over.time <- renderPlotly(ProductionPlot(energy.prod, input$prod.state, input$prod.year.range[1], input$prod.year.range[2]))
   output$production.table <- renderTable(ProductionData(energy.prod, input$prod.state, input$prod.year.range[1], input$prod.year.range[2]))     
   
+  # Pie chart
   output$distinct.energy.type <- renderPlotly(BuildPieChart(energy.use, input$distinct.state, input$distinct.year))
+  output$consumption.table <- renderTable(ConsumptionData(energy.use, input$distinct.state, input$distinct.year))
   
-  #map
+  # map
   output$map <- renderPlotly(Build.Map(eval(parse(text = input$dataset)), input$select.year))
   
   # bar chart
