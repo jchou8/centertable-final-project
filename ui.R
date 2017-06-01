@@ -157,7 +157,7 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
         # sliderInput for year
         sliderInput("year",
                     label = "Year",
-                    min = 1960,
+                    min = 1970,
                     max = 2014,
                     value = 2014,
                     sep = '')
