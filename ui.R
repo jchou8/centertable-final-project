@@ -19,12 +19,11 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
   # Overview tab with information on the project
   tabPanel("Overview",
     titlePanel('Project Overview'),
-    h3("The Report"),
-    p("This report provides a broad overview of energy consumption, production, and expenditure data.
-        The intention of this report is to educate the general public on how our nation's energy consumption,
-        production, and expenditure has changed over time. Our primary audience is anyone who is interested the
-        environment, or our nations energy overview. In addition anyone who is interested in a distcint type
-        of energy can track how that energy's usage has changed over time. "),
+    p("The report provides a broad overview of energy consumption, production, and expenditure data.
+        The purpose of this report is to educate the general public on how our nation's energy consumption,
+        production, and expenditure has changed over time, with an emphasis on renewable vs. nonrenewable energy.
+        We believe that people should be more concerned with the state of the environment and hope that our report
+        will motivate people to consider the importance of renewable energy"),
     h3("Data"),
     p("The dataset we are working with contains data on energy consumption, production, and expenditures from 1960 to 2014. 
        This data was collected by the US Energy Information Administration, a part of the US Department of Energy, 
@@ -32,9 +31,10 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
       a("State Energy Data System", href = "https://www.eia.gov/state/seds/seds-data-complete.php?sid=US#CompleteDataFile")
     ),
     h3("Structure"),
-    p("We designed our application to be multiple visauls that allowed users to better understand the change
-        expenditure in the U.S.. Each visual allows users to explore differernt apects our nations energy
-        history. Each interactive visual can be used to answer unique energy questions."),
+    p("The first tab contains a simple overview map that shows how energy trends vary between states.
+       The next three tabs contains different visualizations that explores a different aspect of the data - 
+       production, consumption, or expenditures. Each visualization allows the data to be considered at either the
+       nationwide level or a per-state level at various points in our nation's history."),
     
     h3("Project Creators"),
     tags$ul(
@@ -44,10 +44,39 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
       tags$li("Andrew Roger")
     )
   ),
-    
+  
+  tabPanel("Energy by State",
+    titlePanel("Production, Consumption, and Expenditure by State"),
+    p("This map shows production, consumption, or expenditure data by State for a given year. 
+       The dataset can be selected with the drop down menu, and the year can be adjusted with the slider.
+        Hovering over a state will display detailed comparison information."),
+    sidebarLayout(
+      sidebarPanel(
+        selectInput(
+          inputId = 'dataset',
+          label = 'Dataset',
+          choices = c('Production', 'Consumption', 'Expenditure'),
+          selected = 'Production'
+        ),
+             
+        sliderInput(inputId = 'select.year',
+          label = 'Year',
+          min = 1970,
+          max = 2014,
+          value = 2014,
+          sep = ''
+        )
+      ),
+           
+      mainPanel(
+        plotlyOutput('map')
+      )
+    )
+  ),
+  
   tabPanel("Production",
     titlePanel('Energy Production By Type'),
-    p("This chart displays energy production for each year, separated into four major categories: coal, crude oil, natural gas, and renewable. The data can be filtered down to a specific state and range of years."),
+    p("This chart displays energy production over time, separated into four major categories: coal, crude oil, natural gas, and renewable. The data can be filtered down to a specific state and range of years."),
            
     sidebarLayout(
       sidebarPanel(
@@ -67,7 +96,6 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     
   tabPanel("Consumption",
     titlePanel('Energy Consumption By Energy Type'),
-    h3("Pie Chart Overview"),
     p("The following pie chart is intended to give an idea of which energy types a given state is 
                       consuming the most/least of. All units are in billions of BTUs. The chart can be filtered by 
                       year to see how a state has changed which energy it is consuming over time. 
@@ -98,38 +126,8 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
      )
     ),
   
-  tabPanel("Energy by State",
-    titlePanel("Production, Consumption, and Expenditure by State"),
-    p("This map shows production, consumption, or expenditure data by State for a given year. 
-      The dataset can be selected with the drop down menu, and the year can be adjusted with the slider.
-      Hovering over a state will display detailed comparison information."),
-    sidebarLayout(
-      sidebarPanel(
-        selectInput(
-          inputId = 'dataset',
-          label = 'Dataset',
-          choices = c('Production', 'Consumption', 'Expenditure'),
-          selected = 'Production'
-        ),
-        
-        sliderInput(inputId = 'select.year',
-                    label = 'Year',
-                    min = 1970,
-                    max = 2014,
-                    value = 2014,
-                    sep = ''
-        )
-      ),
-      
-      mainPanel(
-        plotlyOutput('map')
-      )
-    )
-  ),
-  
   tabPanel("Expenditures",
     titlePanel('Energy Expenditures by State and Energy Type'),
-    h3("Bar Chart Overview"),
     p("This bar chart shows the differences between each state's expenditures. This allows the user to see
       which states pay the most for a certain type of energy.  Selecting the different energy types
       will present the user with a stacked bar chart allowing the user to compare which energy the state spends more on.
