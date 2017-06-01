@@ -1,6 +1,5 @@
 
-#Map of US with consumption shown and slider that changes the year
-#options to switch production and expenditures
+#Map of US with consumption/production/expenditure data
 library(plotly)
 library(dplyr)
 
