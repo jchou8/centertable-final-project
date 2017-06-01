@@ -36,16 +36,16 @@ ProductionPlot <- function(data,  state = 'Overall', startYear = 1960, endYear =
   
     prod.plot <- plot_ly(filtered, x = ~year, type = 'scatter', mode = 'line+markers',
                          y = ~Coal, name = 'Coal', mode = 'line+markers', hoverinfo = 'text',
-                         text = ~paste("<b>Coal</b>", "</br>Year: ", year, "</br>Production: ", Coal, " billion BTU")) %>%
+                         text = ~paste("<b>Coal</b>", "</br>Year: ", year, "</br>Production: ", Coal, " billion Btu")) %>%
       add_trace(y = ~Crude_oil, name = 'Crude oil', mode = 'line+markers', hoverinfo = 'text',
-                text = ~paste("<b>Crude oil</b>", "</br>Year: ", year, "</br>Production: ", Crude_oil, " billion BTU")) %>%
+                text = ~paste("<b>Crude oil</b>", "</br>Year: ", year, "</br>Production: ", Crude_oil, " billion Btu")) %>%
       add_trace(y = ~Natural_gas, name = 'Natural gas', mode = 'line+markers', hoverinfo = 'text',
-                text = ~paste("<b>Natural gas</b>", "</br>Year: ", year, "</br>Production: ", Natural_gas, " billion BTU")) %>%
+                text = ~paste("<b>Natural gas</b>", "</br>Year: ", year, "</br>Production: ", Natural_gas, " billion Btu")) %>%
       add_trace(y = ~Renewable_energy, name = 'Renewable energy', mode = 'line+markers', hoverinfo = 'text',
-                text = ~paste("<b>Renewable energy</b>", "</br>Year: ", year, "</br>Production: ", Renewable_energy, " billion BTU")) %>%
+                text = ~paste("<b>Renewable energy</b>", "</br>Year: ", year, "</br>Production: ", Renewable_energy, " billion Btu")) %>%
       layout(title = paste(state, "Energy Production by Type"),
              xaxis = list(title = "Year"),
-             yaxis = list (title = "Energy Produced (Billion BTU)"))
+             yaxis = list (title = "Energy Produced (Billion Btu)"))
     
     return(prod.plot)
 }
