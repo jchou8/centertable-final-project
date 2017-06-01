@@ -25,6 +25,10 @@ BuildPieChart <- function(data, state = 'Overall', year = 2014){
   #Take end phrases off of descriptions to make labels on pie chart more clear
   state.data$Description <- gsub(' total consumption', '', state.data$Description)
   state.data$Description <- gsub(' total consumed', '', state.data$Description)
+  state.data$Description <- gsub(' (including supplemental gaseous fuels)', '', state.data$Description)
+  state.data$Description <- gsub(' (i.e., sold)', '', state.data$Description)
+  state.data$Description <- gsub('.', '', state.data$Description)
+  state.data$Description <- gsub(',', '', state.data$Description)
   
   #Filter data to get only whats needed for pie chart
   state.data <- select(state.data, use, Description) %>% filter(!grepl('excluding', Description)) %>% 
