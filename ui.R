@@ -146,6 +146,21 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
       which states pay the most for a certain type of energy.  Selecting the different energy types
       will present the user with a stacked bar chart allowing the user to compare which energy the state spends more on.
       The year slider will show the corresponding plot with the data from that year."),
+    p("This chart illustrates how there are two leading states that pay the most for overall energy, Texas and California. 
+      One of these two states seems to dominate each of the categories in the more recent years of the data. This could 
+      possibly be attributed to the large population of each state and the possible energy demands that they may have. 
+      Following this logic, the idea that New York may also be a leading state comes up. Although it is one of the top three states in the early seventies,
+      the decline of its energy expenditures are shown over the years.  Following this trend, the third leading state
+      seems to fluctuate between New York and Florida.  This could possibly mean that Florida will overtake New York's energy 
+      expenditures in a few more years."),
+    p("Both Motor Gasoline and Electricity have been going up over the years between the 1970s to the 2000s. Even as other energy
+      types rise, the expenditures on Motor Gasoline and Electricity seem to be growing at a constant rate in terms of expenditure. This is most 
+      likely due to the wide use of vehicles and electricity in every single state.  The more frequent use of cars and other motor vehicles 
+      will increase this expenditure in the future. Although this trend is not currently present in the data, the growing use of smart
+      vehicles that run off of electricity instead of gasoline could change the outcome of the graphs further in the future. The expenditures 
+      on electricity will probably not decrease since the the United States's needs of technology will seemingly not change any time soon. 
+      Since electricity is strongly interwoven into the United State's society, the likelyhood of these expenditures going down is close to none. 
+      This is shown in the upward trend of Electricity in the bar charts over all the years."),
     
     sidebarLayout(
       sidebarPanel(
