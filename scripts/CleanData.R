@@ -10,7 +10,8 @@ energy.expense <- read.csv("../data/ex_all.csv", stringsAsFactors = FALSE)
 
 # Filter data categories to only the categories we're interested in
 msn.codes <- msn.codes %>% filter(Unit == "Billion Btu" | Unit == "Million dollars") %>% 
-                           filter((substr(MSN, 3, 3) == "T" & substr(MSN, 4, 4) == "C") | substr(MSN, 3, 5) == "PRB" | MSN == "NGMPB") %>% 
+                           filter((substr(MSN, 3, 3) == "T" & substr(MSN, 4, 4) == "C") | substr(MSN, 3, 5) == "PRB" | MSN == "NGMPB" | 
+                                   MSN == "NUETV") %>% 
                            select(-Unit)
 
 
