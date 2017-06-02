@@ -30,6 +30,11 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
        and is publicly available here: ",
       a("State Energy Data System", href = "https://www.eia.gov/state/seds/seds-data-complete.php?sid=US#CompleteDataFile")
     ),
+    h3("Questions"),
+    p("Some questions we had for this dataset included:"),
+    p("Which States' energy consumption/production have increased the most?"),
+    p("Which states use the most clean energy, and which states spend the most money on it?"),
+    p("Which states have made the biggest shifts toward focusing on renewable energy over the past 50 years?"),
     h3("Structure"),
     p("The first tab contains a simple overview map that shows how energy trends vary between states.
        The next three tabs contains different visualizations that explores a different aspect of the data - 
