@@ -23,11 +23,11 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
         The purpose of this report is to educate the general public on how our nation's energy consumption,
         production, and expenditure has changed over time, with an emphasis on renewable vs. nonrenewable energy.
         We believe that people should be more concerned with the state of the environment and hope that our report
-        will motivate people to consider the importance of renewable energy"),
+        will motivate people to consider the importance of renewable energy for our planet's future."),
     h3("Audience"),
     p("While anybody could get some insights from this report, our intended audience for this report consists of those
         who are interested in the history of climate change and what kind of progress has been made in producing or
-        investing in renewable energy sources. With climate change becoming an increasingly popular topic, we expect there
+        investing in renewable energy sources. With climate change becoming an increasingly relevant and important topic, we expect there
         to be a lot of people wondering about this kind of information and we hope their questions are answered in this report."),
     h3("Data"),
     p("The dataset we are working with contains data on energy consumption, production, and expenditures from 1960 to 2014. 
@@ -37,14 +37,27 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     ),
     h3("Questions"),
     p("Some questions we had for this dataset included:"),
-    p("Which States' energy consumption/production have increased the most?"),
-    p("Which states use the most clean energy, and which states spend the most money on it?"),
-    p("Which states have made the biggest shifts toward focusing on renewable energy over the past 50 years?"),
+    tags$ul(
+      tags$li("Which states' energy consumption/production have increased the most?"), 
+      tags$li("Which states use the most renewable energy, and which states spend the most money on it?"), 
+      tags$li("Which states have made the biggest shifts toward focusing on renewable energy over the past 50 years?"),
+      tags$li("Overall, how much progress has the US made towards renewable energy?")
+    ),
+    
     h3("Structure"),
     p("The first tab contains a simple overview map that shows how energy trends vary between states.
        The next three tabs contains different visualizations that explores a different aspect of the data - 
        production, consumption, or expenditures. Each visualization allows the data to be considered at either the
-       nationwide level or a per-state level at various points in our nation's history."),
+       nationwide level or a per-state level at various points in our nation's history. Above each chart is an overview
+-       describing the chart and its features, along with the conclusions that we have come to."),
+    
+    h3("Further Analysis"),
+    p("Our analysis of the data is fairly broad and invites more specific questions, including:"),
+    tags$ul(
+      tags$li("How have shifts the prices of different types of energy affected their production?"), 
+      tags$li("What specific events caused dramatic shifts in certain types of energy production and consumption?"), 
+      tags$li("How is the consumption of various energy types distributed throughout sectors (transportation/commercial/industrial/residential)?")
+    ),
     
     h3("Project Creators"),
     tags$ul(
@@ -181,11 +194,11 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
         checkboxGroupInput("energy", 'Energy Types',
                            choiceNames = energy.types,
                            choiceValues = energy.codes,
-                           selected = energy.codes[-1]),
+                           selected = c("DFT", "EST", "JFT", "LGT", "MGT", "NGT")),
         # sliderInput for year
         sliderInput("year",
                     label = "Year",
-                    min = 1960,
+                    min = 1970,
                     max = 2014,
                     value = 2014,
                     sep = '')
