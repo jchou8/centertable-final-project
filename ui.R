@@ -102,9 +102,18 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
   tabPanel("Consumption",
     titlePanel('Energy Consumption By Energy Type'),
     p("The following pie chart is intended to give an idea of which energy types a given state is 
-                      consuming the most/least of. All units are in billions of BTUs. The chart can be filtered by 
-                      year to see how a state has changed which energy it is consuming over time. 
-                      Observe how certain energy types have emerged and diminished between various states."),
+      consuming the most/least of. All units are in billions of BTUs. The chart can be filtered by 
+       year to see how a state has changed which energy it is consuming over time. 
+      Observe how certain energy types have emerged and diminished between various states."),
+    p("We have concluded from our chart and analysis that overall our country is beginning to find new renewable 
+      energy sources like geothermal, solar, and wind energy. However, we are not growing the use of these sources
+      at a fast pace. It is clear some states have made a concerted effort to boost renewable energy consumption, while
+      some states, have made less progress. The states that have been most succesful in consuming more
+      renewable, like Washington, Maine, and Idaho, are states that have specifically ramped up consumption of one 
+      distinct type of renewable energy. To conitnue to push towards more renewable energy usage, we belive that 
+      each state needs to find a distinct renewable energy source that they can easily develop, and put most of their effort
+      into this source."),
+
     sidebarLayout(
       sidebarPanel(
         selectInput(inputId = 'distinct.state',
@@ -132,12 +141,25 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     ),
   
   tabPanel("Expenditures",
-    titlePanel('Energy Expenditures by State and Energy Type'),
-    p("This bar chart shows the differences between each state's expenditures. This allows the user to see
-      which states pay the most for a certain type of energy.  Selecting the different energy types
-      will present the user with a stacked bar chart allowing the user to compare which energy the state spends more on.
-      The year slider will show the corresponding plot with the data from that year."),
-    
+           titlePanel('Energy Expenditures by State and Energy Type'),
+           p("This bar chart shows the differences between each state's expenditures. This allows the user to see
+             which states pay the most for a certain type of energy.  Selecting the different energy types
+             will present the user with a stacked bar chart allowing the user to compare which energy the state spends more on.
+             The year slider will show the corresponding plot with the data from that year."),
+           p("This chart illustrates how there are two leading states that pay the most for overall energy, Texas and California. 
+             One of these two states seems to dominate each of the categories in the more recent years of the data. This could 
+             possibly be attributed to the large population of each state and the possible energy demands that they may have. 
+             Following this logic, the idea that New York may also be a leading state comes up. Although it is one of the top three states in the early seventies,
+             the decline of its energy expenditures are shown over the years.  Following this trend, the third leading state
+             seems to fluctuate between New York and Florida.  This could possibly mean that Florida will overtake New York's energy 
+             expenditures in a few more years."),
+           p("Both Motor Gasoline and Electricity have been going up over the years between the 1970s to the 2000s. Even as other energy
+             types rise, the expenditures on Motor Gasoline and Electricity seem to be growing at a constant rate in terms of expenditure. This is most 
+             likely due to the wide use of vehicles and electricity in every single state. The more frequent use of cars and other motor vehicles 
+             will increase this expenditure in the future. Although this trend is not currently present in the data, the growing use of smart
+             vehicles that run off of electricity instead of gasoline could change the outcome of the graphs further in the future. 
+             Since electricity is strongly interwoven into US society and infrastructure, the likelihood of electricity expenditures going down is close to none. 
+             This is shown in the upward trend of Electricity in the bar charts over all the years."),    
     sidebarLayout(
       sidebarPanel(
         # checkbox input for energy type
