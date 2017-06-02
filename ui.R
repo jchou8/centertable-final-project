@@ -24,6 +24,11 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
         production, and expenditure has changed over time, with an emphasis on renewable vs. nonrenewable energy.
         We believe that people should be more concerned with the state of the environment and hope that our report
         will motivate people to consider the importance of renewable energy"),
+    h3("Audience"),
+    p("While anybody could get some insights from this report, our intended audience for this report consists of those
+        who are interested in the history of climate change and what kind of progress has been made in producing or
+        investing in renewable energy sources. With climate change becoming an increasingly popular topic, we expect there
+        to be a lot of people wondering about this kind of information and we hope their questions are answered in this report."),
     h3("Data"),
     p("The dataset we are working with contains data on energy consumption, production, and expenditures from 1960 to 2014. 
        This data was collected by the US Energy Information Administration, a part of the US Department of Energy, 
