@@ -1,4 +1,7 @@
 # centertable-final-project
+
+Check out the interactive app here: https://jchou.shinyapps.io/centertable-final-project/
+
 ## Project Overview
 The report provides a broad overview of energy consumption, production, and expenditure data. The purpose of this report is to educate the general public on how our nation's energy consumption, production, and expenditure has changed over time, with an emphasis on renewable vs. nonrenewable energy. We believe that people should be more concerned with the state of the environment and hope that our report will motivate people to consider the importance of renewable energy and our planet's future.
 

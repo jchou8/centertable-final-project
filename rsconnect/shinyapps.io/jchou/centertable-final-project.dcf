@@ -1,0 +1,11 @@
+name: centertable-final-project
+title: centertable-final-project
+account: jchou
+server: shinyapps.io
+appId: 185618
+bundleId: 849942
+url: https://jchou.shinyapps.io/centertable-final-project/
+when: 1496376210.78553
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: data/clean/use_by_sector.csv|scripts/UseBySectorChart.R
