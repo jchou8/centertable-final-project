@@ -79,9 +79,19 @@ shinyUI(navbarPage("EIA State Energy Data", theme = "bootstrap.css",
     )
   ),
   
+  #Production line graph
   tabPanel("Production",
     titlePanel('Energy Production By Type'),
-    p("This chart displays energy production over time, separated into four major categories: coal, crude oil, natural gas, and renewable. The data can be filtered down to a specific state and range of years."),
+    p("This chart displays energy production over time, separated into four major categories: 
+    coal, crude oil, natural gas, and renewable. The data can be filtered down to a specific state and range of years."),
+    
+    p("From this chart, we can see that renewable energy production has been slowly growing over the past 50 years.
+       However, non-renewable sources still make up an overwhelming majority of our energy production, 
+       and both crude oil and natural gas production have sharply increased recently. 
+       For example, starting around 2010, natural gas energy production skyrocketed in Pennsylvania and Arkanasas, 
+       and crude oil production skyrocketed in North Dakota and Texas.
+       Despite advances in renewable energy, it seems that it is currently not growing fast enough to keep up with the 
+       overall increased demand for energy, so it is imperative that we continue to push for advances in renewable and clean energy."),
            
     sidebarLayout(
       sidebarPanel(
